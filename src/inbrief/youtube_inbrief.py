@@ -11,9 +11,9 @@ class YoutubeInBrief:
     """Download transcript from YouTube video and summarize it.
 
     Usage:
-     >>> video_url = "https://www.youtube.com/watch?v=example"
      >>> from inbrief.summarizer.simple_summarizer import SimpleSummarizer
      >>> summarizer = SimpleSummarizer("models/gemini-1.5-flash")
+     >>> video_url = "https://www.youtube.com/watch?v=example"
      >>> yt = YoutubeInBrief(summarizer=summarizer)
      >>> transcript = yt.fetch_transcript(video_url)
      # transcript example:
