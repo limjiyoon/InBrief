@@ -1,9 +1,9 @@
 from inbrief.llm_factory import LlmFactory
-from inbrief.youtube_inbrief import YoutubeInBrief
+from inbrief.summarizer.base import Summarizer
 
 
-class Summarizer:
-    """Summarize text using a language model."""
+class SimpleSummarizer(Summarizer):
+    """Summarize text using a language model with simple script."""
 
     def __init__(self, model_name: str):
         assert model_name in LlmFactory().available_models(), f"Model '{model_name}' is not available."
