@@ -26,7 +26,7 @@ class YoutubeInBrief:
         video_id = video_id_from_youtube_url(video_url)
         raw_transcript = YouTubeTranscriptApi.get_transcript(video_id=video_id, languages=["en", "ko"])
         if raw_transcript is None:
-            raise ValueError("Transcript not found.")
+            raise ValueError(f"Transcript not found in the provided URL: {video_url}.")
         return wrap_transcript(raw_transcript)
 
     # TODO: define more elaborate type of transcript and return type
