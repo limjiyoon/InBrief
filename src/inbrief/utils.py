@@ -18,11 +18,30 @@ def video_id_from_youtube_url(url: str) -> str:
     return match.group(0)
 
 
-def wrap_transcript(raw_transcript: list) -> Transcript:
-    """Wrap raw transcript into a Transcript object."""
+def wrap_transcript(raw_transcript: list[dict[str, str | float]]) -> Transcript:
+    """Wrap raw transcript into a Transcript object.
+
+    Args:
+        raw_transcript: List of dictionaries containing transcript chunks.
+            Each chunk must have 'text' (str), 'start' (float), and 'duration' (float).
+
+    Returns:
+        Transcript object containing the processed chunks.
+
+    Raises:
+        ValueError: If raw_transcript is empty or chunks are missing required keys.
+        TypeError: If field types are incorrect.
+    """
+    if not raw_transcript:
+        raise ValueError("Raw transcript cannot be empty")
+
     return Transcript(
         transcript=[
-            TranscriptChunk(text=chunk["text"], start=chunk["start"], duration=chunk["duration"])
+            TranscriptChunk(
+                text=str(chunk["text"]).strip(),
+                start=float(chunk["start"]),
+                duration=float(chunk["duration"]),
+            )
             for chunk in raw_transcript
         ]
     )
