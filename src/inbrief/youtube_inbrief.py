@@ -3,7 +3,7 @@ from __future__ import annotations
 from youtube_transcript_api import YouTubeTranscriptApi
 
 from inbrief.types import Transcript
-from inbrief.utils import video_id_from_url, wrap_transcript
+from inbrief.utils import video_id_from_youtube_url, wrap_transcript
 
 
 class YoutubeInBrief:
@@ -23,7 +23,7 @@ class YoutubeInBrief:
         If not, a Korean transcript will be fetched if available.
         Otherwise, a ValueError will be raised.
         """
-        video_id = video_id_from_url(video_url)
+        video_id = video_id_from_youtube_url(video_url)
         raw_transcript = YouTubeTranscriptApi.get_transcript(video_id=video_id, languages=["en", "ko"])
         if raw_transcript is None:
             raise ValueError("Transcript not found.")
