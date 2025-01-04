@@ -1,5 +1,5 @@
 from threading import Lock
-from typing import Any
+from weakref import WeakValueDictionary
 
 
 # Metaclass for Singleton
@@ -14,7 +14,7 @@ class Singleton(type):
         Pydantic models cannot use Singleton metaclass since they use different metaclass.
     """
 
-    _instances: dict[type, Any] = {}
+    _instances: WeakValueDictionary = WeakValueDictionary()
     _lock: Lock = Lock()
 
     def __call__(cls, *args, **kwargs):
