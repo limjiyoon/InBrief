@@ -14,4 +14,4 @@ class TranscriptChunk:
 class Transcript:
     """A collection of transcript chunks."""
 
-    transcript: list[TranscriptChunk]
+    chunks: list[TranscriptChunk]

@@ -36,7 +36,7 @@ def wrap_transcript(raw_transcript: list[dict[str, str | float]]) -> Transcript:
         raise ValueError("Raw transcript cannot be empty")
 
     return Transcript(
-        transcript=[
+        chunks=[
             TranscriptChunk(
                 text=str(chunk["text"]).strip(),
                 start=float(chunk["start"]),
