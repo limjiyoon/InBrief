@@ -12,12 +12,13 @@ class YoutubeInBrief:
 
     Usage:
      >>> video_url = "https://www.youtube.com/watch?v=example"
-     >>> yt = YoutubeInBrief()
+     >>> from inbrief.summarizer.simple_summarizer import SimpleSummarizer
+     >>> summarizer = SimpleSummarizer("models/gemini-1.5-flash")
+     >>> yt = YoutubeInBrief(summarizer=summarizer)
      >>> transcript = yt.fetch_transcript(video_url)
      # transcript example:
      # Transcript(chunks=[TranscriptChunk(text="Hello world", start=0.0, duration=1.5), ...])
-     >>> summary = yt.summarize(transcript)
-     # Note: summarize() is not yet implemented
+     >>> summary = yt.summarize(transcript)  # Returns summarized text
     """
 
     def __init__(self, summarizer: Summarizer):
