@@ -9,6 +9,9 @@ class Singleton(type):
     Example:
         >>> class MyClass(metaclass=Singleton):
         >>>    pass
+
+    Note:
+        Pydantic models cannot use Singleton metaclass since they use different metaclass.
     """
 
     _instances: dict[type, Any] = {}
