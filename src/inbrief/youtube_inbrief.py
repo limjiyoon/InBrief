@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from youtube_transcript_api import YouTubeTranscriptApi
 
-from inbrief.types import Transcript, TranscriptChunk
+from inbrief.types import Transcript
+from inbrief.utils import video_id_from_url, wrap_transcript
 
 
 class YoutubeInBrief:
@@ -15,7 +16,6 @@ class YoutubeInBrief:
     >>> summary = yt.summarize(transcript)
     """
 
-    # TODO: define more elaborate type of transcript
     def fetch_transcript(self, video_url: str) -> Transcript:
         """Fetch transcript from YouTube video.
 
@@ -23,32 +23,16 @@ class YoutubeInBrief:
         If not, a Korean transcript will be fetched if available.
         Otherwise, a ValueError will be raised.
         """
-        video_id = self._video_id_from_url(video_url)
+        video_id = video_id_from_url(video_url)
         raw_transcript = YouTubeTranscriptApi.get_transcript(video_id=video_id, languages=["en", "ko"])
         if raw_transcript is None:
             raise ValueError("Transcript not found.")
-        return self._wrap_transcript(raw_transcript)
-
-    def _video_id_from_url(self, url: str) -> str:
-        """Extract video ID from YouTube video URL.
-
-        Example:
-            "https://www.youtube.com/watch?v=loaTGpqfctI" -> "loaTGpqfctI"
-        """
-        return url.split("v=")[1]
-
-    def _wrap_transcript(self, raw_transcript: list) -> Transcript:
-        """Wrap raw transcript into a Transcript object."""
-        return Transcript(
-            transcript=[
-                TranscriptChunk(text=chunk["text"], start=chunk["start"], duration=chunk["duration"])
-                for chunk in raw_transcript
-            ]
-        )
+        return wrap_transcript(raw_transcript)
 
     # TODO: define more elaborate type of transcript and return type
     # TODO: implement summarization algorithm
-    def summarize(self, transcript: list) -> None:
+    @staticmethod
+    def summarize(transcript: list) -> None:
         """Summarize the transcript."""
         pass
 
