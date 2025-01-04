@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 
-class YouTubeInBref:
+class YoutubeInBrief:
     """Download transcript from YouTube video and summarize it.
 
     Usage:
-    >>> yt = YouTubeInBrief()
+    >>> yt = YoutubeInBrief()
     >>> transcript = yt.fetch_transcript(video_url)
     >>> summary = yt.summarize(transcript)
     """
