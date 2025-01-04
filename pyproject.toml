@@ -5,7 +5,11 @@ description = "Summrize articles, youtube, or papers"
 authors = [
     { name = "limjiyoon", email = "luinpark@gmail.com" }
 ]
-dependencies = []
+dependencies = [
+    "google-api-python-client>=2.157.0",
+    "pydantic>=2.10.4",
+    "pydantic-settings>=2.7.1",
+]
 readme = "README.md"
 requires-python = ">= 3.13.1"
 
@@ -26,7 +30,7 @@ dev-dependencies = [
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/in_brief"]
+packages = ["src/inbrief"]
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
@@ -37,7 +41,7 @@ lint.select = [
     "F",  # pyflakes
     "I",  # isort
     "N",  # pep-naming
-    "D",  # pydocstyle
+#    "D",  # pydocstyle
     "B",  # flakes-bugbear
     "ANN",# flakes-annotations
     "A",  # flakes-builtins
