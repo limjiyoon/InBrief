@@ -35,6 +35,16 @@ def wrap_transcript(raw_transcript: list[dict[str, str | float]]) -> Transcript:
     if not raw_transcript:
         raise ValueError("Raw transcript cannot be empty")
 
+    if not all(
+        isinstance(chunk, dict)
+        and all(
+            key in chunk and isinstance(chunk[key], (str, float))
+            for key in ("text", "start", "duration")
+        )
+        for chunk in raw_transcript
+    ):
+        raise ValueError("Each chunk must have 'text', 'start', and 'duration' fields")
+
     return Transcript(
         chunks=[
             TranscriptChunk(
