@@ -10,13 +10,13 @@ class YoutubeInBrief:
     """Download transcript from YouTube video and summarize it.
 
     Usage:
-+    >>> video_url = "https://www.youtube.com/watch?v=example"
+     >>> video_url = "https://www.youtube.com/watch?v=example"
      >>> yt = YoutubeInBrief()
      >>> transcript = yt.fetch_transcript(video_url)
-+    # transcript example:
-+    # Transcript(chunks=[TranscriptChunk(text="Hello world", start=0.0, duration=1.5), ...])
+     # transcript example:
+     # Transcript(chunks=[TranscriptChunk(text="Hello world", start=0.0, duration=1.5), ...])
      >>> summary = yt.summarize(transcript)
-+    # Note: summarize() is not yet implemented
+     # Note: summarize() is not yet implemented
     """
 
     def fetch_transcript(self, video_url: str) -> Transcript:
