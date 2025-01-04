@@ -37,6 +37,7 @@ class LlmFactory(metaclass=Singleton):
                 yield model.name
 
     def _configure_gemini(self) -> None:
+        # Don't need to consider thread safety since LlmFactory doesn't write false without initialization.
         if not self._use_gemini:
             genai.configure(api_key=Config.gemini_api_key)
             self._use_gemini = True
