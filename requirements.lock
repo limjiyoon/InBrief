@@ -20,17 +20,32 @@ charset-normalizer==3.4.1
     # via requests
 defusedxml==0.7.1
     # via youtube-transcript-api
+google-ai-generativelanguage==0.6.10
+    # via google-generativeai
 google-api-core==2.24.0
+    # via google-ai-generativelanguage
     # via google-api-python-client
+    # via google-generativeai
 google-api-python-client==2.157.0
+    # via google-generativeai
     # via in-brief
 google-auth==2.37.0
+    # via google-ai-generativelanguage
     # via google-api-core
     # via google-api-python-client
     # via google-auth-httplib2
+    # via google-generativeai
 google-auth-httplib2==0.2.0
     # via google-api-python-client
+google-generativeai==0.8.3
+    # via in-brief
 googleapis-common-protos==1.66.0
+    # via google-api-core
+    # via grpcio-status
+grpcio==1.68.1
+    # via google-api-core
+    # via grpcio-status
+grpcio-status==1.68.1
     # via google-api-core
 httplib2==0.22.0
     # via google-api-python-client
@@ -38,10 +53,14 @@ httplib2==0.22.0
 idna==3.10
     # via requests
 proto-plus==1.25.0
+    # via google-ai-generativelanguage
     # via google-api-core
 protobuf==5.29.2
+    # via google-ai-generativelanguage
     # via google-api-core
+    # via google-generativeai
     # via googleapis-common-protos
+    # via grpcio-status
     # via proto-plus
 pyasn1==0.6.1
     # via pyasn1-modules
@@ -49,6 +68,7 @@ pyasn1==0.6.1
 pyasn1-modules==0.4.1
     # via google-auth
 pydantic==2.10.4
+    # via google-generativeai
     # via in-brief
     # via pydantic-settings
 pydantic-core==2.27.2
@@ -64,7 +84,10 @@ requests==2.32.3
     # via youtube-transcript-api
 rsa==4.9
     # via google-auth
+tqdm==4.67.1
+    # via google-generativeai
 typing-extensions==4.12.2
+    # via google-generativeai
     # via pydantic
     # via pydantic-core
 uritemplate==4.1.1

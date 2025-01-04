@@ -15,7 +15,8 @@ class Config(BaseSettings):
     """"""
 
     youtube_api_key: str = Field(...)
-    model_config = SettingsConfigDict(toml_file=root_dir / "config.toml")
+    gemini_api_key: str = Field(...)
+    model_config = SettingsConfigDict(toml_file=root_dir / "configs.toml")
 
     @classmethod
     def settings_customise_sources(
@@ -30,4 +31,5 @@ class Config(BaseSettings):
         return (TomlConfigSettingsSource(settings_cls),)
 
 
-CONFIG = Config()  # pyright: ignore[reportCallIssue]
+# Override the name for singleton settings instance
+Config = Config()  # pyright: ignore[reportCallIssue, reportAssignmentType]
