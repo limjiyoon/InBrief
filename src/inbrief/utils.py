@@ -14,7 +14,7 @@ def video_id_from_youtube_url(url: str) -> str:
     """
     match = re.search(r"(?<=www\.youtube\.com/watch\?v=)[\w-]+", url)
     if match is None:
-        raise ValueError("Invalid YouTube video URL.")
+        raise ValueError(f"No 'www.youtube.com/watch?v=' found in the provided URL: {url}")
     return match.group(0)
 
 
