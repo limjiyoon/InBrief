@@ -1,13 +1,13 @@
 [project]
-name = "configmanagertemplate"
+name = "in_brief"
 version = "0.1.0"
-description = "Add your description here"
+description = "Summrize articles, youtube, or papers"
 authors = [
     { name = "limjiyoon", email = "luinpark@gmail.com" }
 ]
 dependencies = []
 readme = "README.md"
-requires-python = ">= 3.12"
+requires-python = ">= 3.13.1"
 
 [build-system]
 requires = ["hatchling"]
@@ -26,7 +26,7 @@ dev-dependencies = [
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/configmanagertemplate"]
+packages = ["src/in_brief"]
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
