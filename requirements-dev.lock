@@ -22,6 +22,8 @@ charset-normalizer==3.4.1
     # via requests
 coverage==7.6.10
     # via pytest-cov
+defusedxml==0.7.1
+    # via youtube-transcript-api
 distlib==0.3.9
     # via virtualenv
 filelock==3.16.1
@@ -87,6 +89,7 @@ pyyaml==6.0.2
     # via pre-commit
 requests==2.32.3
     # via google-api-core
+    # via youtube-transcript-api
 rsa==4.9
     # via google-auth
 typing-extensions==4.12.2
@@ -99,3 +102,5 @@ urllib3==2.3.0
     # via requests
 virtualenv==20.28.1
     # via pre-commit
+youtube-transcript-api==0.6.3
+    # via in-brief

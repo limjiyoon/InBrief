@@ -18,6 +18,8 @@ certifi==2024.12.14
     # via requests
 charset-normalizer==3.4.1
     # via requests
+defusedxml==0.7.1
+    # via youtube-transcript-api
 google-api-core==2.24.0
     # via google-api-python-client
 google-api-python-client==2.157.0
@@ -59,6 +61,7 @@ python-dotenv==1.0.1
     # via pydantic-settings
 requests==2.32.3
     # via google-api-core
+    # via youtube-transcript-api
 rsa==4.9
     # via google-auth
 typing-extensions==4.12.2
@@ -68,3 +71,5 @@ uritemplate==4.1.1
     # via google-api-python-client
 urllib3==2.3.0
     # via requests
+youtube-transcript-api==0.6.3
+    # via in-brief
