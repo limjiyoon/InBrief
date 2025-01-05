@@ -1,4 +1,4 @@
-import asyncio
+
 
 from inbrief.llm_factory import LlmFactory
 from inbrief.summarizer.base import Summarizer
@@ -15,13 +15,6 @@ class StructuredSummarizer(Summarizer):
         self._model = LlmFactory().create(model_name)
 
         self._components = [
-            # "In breif summary",
-            # "Key point",
-            # "Three Key takeaways",
-            # "Why does it matter",
-            # "Insights",
-            # "In-depth insights",
-            # "Possible Quesition and Answers",
             "keypoints",
             "categories",
             "tags",
@@ -29,19 +22,18 @@ class StructuredSummarizer(Summarizer):
         ]
 
     def summarize(self, text: str) -> str:
-        # cached_model = self._concontents_cache(contents)
-        async def extract() -> dict[str, str]:
+        def extract() -> dict[str, str]:
             return {
-                "keypoints": await self._extract(Prompts.extract_keypoints, text),
-                "categories": await self._extract(Prompts.extract_categories, text),
-                "tags": await self._extract(Prompts.extract_tags, text),
-                "sections": await self._extract(
-                    Prompts.extract_section_details, await self._extract(Prompts.extract_sections, text)
+                "keypoints": self._extract(Prompts.extract_keypoints, text),
+                "categories": self._extract(Prompts.extract_categories, text),
+                "tags": self._extract(Prompts.extract_tags, text),
+                "sections": self._extract(
+                    Prompts.extract_section_details, self._extract(Prompts.extract_sections, text)
                 ),
             }
 
-        structured = asyncio.run(extract())
-        return "\n\n".join([f"#{key.capitalize()}\n{structured[key]}" for key in self._components])
+        structured = extract()
+        return "\n\n".join([f"#{key.capitalize()}\n{content}" for key, content in structured])
 
-    async def _extract(self, prompt: str, contents: str) -> str:
+    def _extract(self, prompt: str, contents: str) -> str:
         return self._model.generate_content([prompt, contents]).text

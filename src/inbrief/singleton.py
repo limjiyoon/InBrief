@@ -13,7 +13,7 @@ class Singleton(type):
         Pydantic models cannot use Singleton metaclass since they use different metaclass.
     """
 
-    _instances: dict = {}
+    _instances: dict[type, object] = {}
     _lock: Lock = Lock()
 
     def __call__(cls, *args, **kwargs):
