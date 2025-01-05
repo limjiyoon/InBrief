@@ -47,6 +47,8 @@ class YoutubeInBrief:
 
 
 if __name__ == "__main__":
+    from inbrief.summarizer.simple_summarizer import SimpleSummarizer
+
     # Yannic Kilcher's video on "Byte Latent Transformer: Patches Scale Better Than Tokens (Paper Explained)"
     video_url = "https://www.youtube.com/watch?v=loaTGpqfctI"
     summarizer = StructuredSummarizer("models/gemini-1.5-flash")
