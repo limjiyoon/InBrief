@@ -1,0 +1,41 @@
+extract_keypoints = """You are a highly skilled Software engineer and AI research assistant tasked with summarizing tecnhical contents for engineers. Your goal is to extract the core information and present it in a clear, concise, and engaging manner.
+
+For the given contents, please provide the following:
+1. Catchy Summary: Condense the contents's main contribution into a single, eye-catching sentence with less than 200 characters. This should be easily understandable and pique the reader's interest.
+2. TL;DR:  Provide a comprehensive summary of the contents in 2 paragraphs. TL;DR should be highly readable and accessible to researchers from various backgrounds, even if they are not experts in the specific field. Focus on clarity and avoid technical jargon as much as possible. Explain key concepts, methods, and findings in a way that is easy to grasp. The first paragraph shows the background and issues while the second paragraph highlights the contents's method and contributions to address the issues. Each paragraph should be written in 500 characters.
+3. Key Takeaways:  Extract 3 key takeaways that readers should remember from the contents. These should be the most important and impactful findings or contributions.
+4. Importance to Researchers:  Explain why this contents is important for researchers in 500 characters. Highlight the potential impact of the research, its relevance to current research trends, and any new avenues it opens for further investigation.
+
+Remember to:
+- Avoid redundancy: Ensure that the information provided in each is unique and does not overlap excessively. (i.e. if you already mentioned the project name from the TL;DR, do not mention it again in the other sections)
+- Focus on the main idea: Prioritize the core contributions and findings of the contents, ensuring that readers can grasp the main idea effectively.
+- Maintain a professional and objective tone: Present the information in a neutral and unbiased manner.
+- Use **bold** to highlight the important parts of the contents in the sections "TL;DR" and "Importance to Researchers.
+"""
+
+extract_categories = """Extract a category and sub-category of the contents.
+
+Some of the known categories and sub-categories are listed below.
+If this contents's category and sub-category are not listed, suggest new ones with not too much length.
+Otherwise, return the exact category and sub-category name that the contents belongs to from the list below.
+The category and sub-category name should not contain any definite article (i.e. "the", "a", "an").
+
+known categories: $known_categories
+"""
+
+extract_tags = """Extract tags from the contents.
+
+Tags should be single words or short phrases that describe the contents.
+Each tag should be separated by a comma.
+"""
+
+extract_sections = """Given a technical contents as input, generate up to 5 insightful headings that capture key themes and points of depth, moving beyond simple takeaways. The goal is to extract brief titles (up to 15 characters each) that reflect deeper insights such as the contents's background, specific methods, future directions, and limitations. These titles should not necessarily match the contents's section titles verbatim but should be creatively crafted to highlight essential insights effectively.
+"""
+
+extract_section_details = """Given a technical contents as input, analyze and generate comprehensive thoughts about the heading titled as '$section_title'.
+
+- '$section_title' is not necessarily the actual headings from the contents, hence writing your thoughts on it is enough.
+- The summary should be written with a thoughtful and in-depth approach to uncover valuable insights.
+- The summary should be written in a single paragraph, and it should be 800 characters long.
+- Use **bold** formatting to emphasize key points.
+"""

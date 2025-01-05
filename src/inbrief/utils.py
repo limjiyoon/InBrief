@@ -1,9 +1,40 @@
 import re
 from pathlib import Path
 
+from pydantic import Field
+from pydantic_settings import BaseSettings, PydanticBaseSettingsSource, SettingsConfigDict, TomlConfigSettingsSource
+
 from inbrief.types import Transcript, TranscriptChunk
 
 root_dir = Path(__file__).parents[2]
+
+
+class Prompts(BaseSettings):
+    """Settings for prompts used in the summarization process."""
+
+    extract_keypoints: str = Field(...)
+    extract_categories: str = Field(...)
+    extract_tags: str = Field(...)
+    extract_sections: str = Field(...)
+    extract_section_details: str = Field(...)
+
+    model_config = SettingsConfigDict(toml_file=root_dir / "prompts" / "prompts.toml")
+
+    @classmethod
+    def settings_customise_sources(
+        cls,
+        settings_cls: type[BaseSettings],
+        init_settings: PydanticBaseSettingsSource,
+        env_settings: PydanticBaseSettingsSource,
+        dotenv_settings: PydanticBaseSettingsSource,
+        file_secret_settings: PydanticBaseSettingsSource,
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
+        _ = init_settings, env_settings, dotenv_settings, file_secret_settings  # required, but don't use
+        return (TomlConfigSettingsSource(settings_cls),)
+
+
+# Override the name for singleton settings instance
+Prompts = Prompts()  # pyright: ignore[reportCallIssue, reportAssignmentType]
 
 
 def video_id_from_youtube_url(url: str) -> str:

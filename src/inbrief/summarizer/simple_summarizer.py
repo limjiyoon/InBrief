@@ -11,4 +11,6 @@ class SimpleSummarizer(Summarizer):
         self._model = LlmFactory().create(model_name)
 
     def summarize(self, text: str) -> str:
+        if not text:
+            raise ValueError("Text to summarize is empty")
         return self._model.generate_content(["Summarize following contents", text]).text

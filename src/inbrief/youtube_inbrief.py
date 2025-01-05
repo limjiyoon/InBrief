@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+from pprint import pprint
+
 from youtube_transcript_api import YouTubeTranscriptApi
 
 from inbrief.summarizer.base import Summarizer
+from inbrief.summarizer.structured_summarizer import StructuredSummarizer
 from inbrief.types import Transcript
 from inbrief.utils import video_id_from_youtube_url, wrap_transcript
 
@@ -44,11 +47,10 @@ class YoutubeInBrief:
 
 
 if __name__ == "__main__":
-    from inbrief.summarizer.simple_summarizer import SimpleSummarizer
-
     # Yannic Kilcher's video on "Byte Latent Transformer: Patches Scale Better Than Tokens (Paper Explained)"
     video_url = "https://www.youtube.com/watch?v=loaTGpqfctI"
-    summarizer = SimpleSummarizer("models/gemini-1.5-flash")
+    summarizer = StructuredSummarizer("models/gemini-1.5-flash")
     youtube_inbrief = YoutubeInBrief(summarizer=summarizer)
     transcript = youtube_inbrief.fetch_transcript(video_url)
-    print(transcript)
+    summary = youtube_inbrief.summarize(transcript)
+    pprint(summary)
