@@ -163,3 +163,6 @@ cython_debug/
 .idea/
 .python-version
 
+
+# Configs
+configs.toml
