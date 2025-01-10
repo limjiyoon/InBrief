@@ -8,7 +8,7 @@ from pydantic_settings import (
     TomlConfigSettingsSource,
 )
 
-from src.inbrief.utils import root_dir
+from inbrief.utils import root_dir
 
 
 class Config(BaseSettings):
