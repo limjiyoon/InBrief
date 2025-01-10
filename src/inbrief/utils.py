@@ -17,6 +17,8 @@ class Prompts(BaseSettings):
     extract_tags: str = Field(...)
     extract_sections: str = Field(...)
     extract_section_details: str = Field(...)
+    extract_core_statement: str = Field(...)
+    extract_support_statements: str = Field(...)
 
     model_config = SettingsConfigDict(toml_file=root_dir / "prompts" / "prompts.toml")
 

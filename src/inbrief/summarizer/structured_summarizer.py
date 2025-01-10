@@ -1,5 +1,3 @@
-
-
 from inbrief.llm_factory import LlmFactory
 from inbrief.summarizer.base import Summarizer
 from inbrief.utils import Prompts

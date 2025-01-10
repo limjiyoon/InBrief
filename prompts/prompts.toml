@@ -39,3 +39,40 @@ extract_section_details = """Given a technical contents as input, analyze and ge
 - The summary should be written in a single paragraph, and it should be 800 characters long.
 - Use **bold** formatting to emphasize key points.
 """
+
+extract_core_statement = """You are an expert text analyzer with deep experience in identifying and distilling core concepts. Your task is to extract the main statement that represents the fundamental idea of the given text.
+Please analyze the provided text and:
+
+Identify the central thesis or main argument that forms the text's foundation
+Extract key terms and phrases that are crucial to understanding this core idea
+Provide a single coherent paragraph (100-150 words) that:
+
+Articulates the main statement in clear, precise language
+Incorporates the identified keywords naturally
+Explains how this core idea serves as the text's organizational principle
+Demonstrates how this main statement shapes the text's overall structure and purpose
+
+Format your response as follows:
+Statement: [Single sentence capturing the essential idea]
+Keywords: [List of 5-7 crucial terms, separated by commas]
+Description: [One paragraph explanation as specified above]
+"""
+
+extract_support_statements = """You are an expert in textual analysis with a focus on argumentative structure and evidence examination. Your task is to identify and analyze the key supporting statements that reinforce the text's core idea.
+Please analyze the provided text and:
+
+Identify the supporting arguments or evidence that validate the main statement.
+Extract key terms and phrases specific to these supporting elements.
+Provide a single coherent paragraph (100-150 words) that:
+
+Synthesizes the most significant supporting statements
+Demonstrates how these statements strengthen the core idea
+Explains the logical connections between supporting evidence and main thesis
+Incorporates relevant keywords to show their contextual importance
+If you cannot find any supporting statements, please set supporting statements as empty string ""
+
+Format each supporting statements as follows:
+Supporting Statements: [2-3 key supporting statements in bullet points]
+Keywords: [List of 5-7 relevant terms, separated by commas]
+Description: [One paragraph explanation as specified above]
+"""
