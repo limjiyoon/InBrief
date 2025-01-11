@@ -1,9 +1,8 @@
 import json
-from uuid import uuid4
 
 from google.generativeai import GenerationConfig
 from loguru import logger
-from pydantic import BaseModel, Field, ConfigDict, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from inbrief.llm_factory import LlmFactory
 from inbrief.summarizer.base import Summarizer
@@ -77,7 +76,6 @@ class LogicTreeSummarizer(Summarizer):
             print(f"ValidationError: {e}")
             return []
 
-
     def _summarize_tree(self, logic_tree: dict[Node, list[Node]], start_node: Node, level: int = 0) -> str:
         prefix = f"{"  " * level if level > 0 else ""}- "
         results = f"{prefix}{start_node.statement}\n"
@@ -85,9 +83,7 @@ class LogicTreeSummarizer(Summarizer):
         logger.debug(f"{prefix}- {start_node.statement}")
 
         supportings = [
-            self._summarize_tree(logic_tree, node, level + 1)
-            for node in logic_tree[start_node]
-            if node in logic_tree
+            self._summarize_tree(logic_tree, node, level + 1) for node in logic_tree[start_node] if node in logic_tree
         ]
         results = f"{results}{''.join(supportings)}"
         return results
