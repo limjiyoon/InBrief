@@ -3,7 +3,7 @@ from uuid import uuid4
 
 from google.generativeai import GenerationConfig
 from loguru import logger
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, ValidationError
 
 from inbrief.llm_factory import LlmFactory
 from inbrief.summarizer.base import Summarizer
@@ -64,7 +64,19 @@ class LogicTreeSummarizer(Summarizer):
         ).text
         logger.debug(f"Create support nodes: {node_json}")
 
-        return [Node(**node) for node in json.loads(node_json)]
+        try:
+            nodes_data = json.loads(node_json)
+        except json.JSONDecodeError as e:
+            print(f"JSON decoding failed: {e}")
+            return []
+
+        try:
+            nodes = [Node(**node) for node in nodes_data]
+            return nodes
+        except ValidationError as e:
+            print(f"ValidationError: {e}")
+            return []
+
 
     def _summarize_tree(self, logic_tree: dict[Node, list[Node]], start_node: Node, level: int = 0) -> str:
         prefix = f"{"  " * level if level > 0 else ""}- "
