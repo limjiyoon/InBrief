@@ -61,6 +61,8 @@ httplib2==0.22.0
 idna==3.10
     # via anyio
     # via requests
+loguru==0.7.3
+    # via in-brief
 proto-plus==1.25.0
     # via google-ai-generativelanguage
     # via google-api-core
